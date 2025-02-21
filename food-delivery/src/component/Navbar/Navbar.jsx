@@ -1,19 +1,39 @@
-import React, { useState } from 'react'
-import './Navbar.css'
-import { assets } from "../../assets/frontend_assets/assets"
+import React, { useState, useEffect } from 'react';
+import './Navbar.css';
+import { assets } from "../../assets/frontend_assets/assets";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-
   const [menu, setMenu] = useState("home");
+  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMenu("home");
+  };
 
   return (
-    <div className='navbar'>
+    <div className={`navbar ${visible ? "visible" : "hidden"}`}>
       <img src={assets.logo} alt="" className='logo' />
       <ul className="navbar-menu">
-        <li className={menu === "home" ? "active" : ""} onClick={() => setMenu("home")}>home</li>
-        <li className={menu === "menu" ? "active" : ""} onClick={() => setMenu("menu")}>menu</li>
-        <li className={menu === "mobile-app" ? "active" : ""} onClick={() => setMenu("mobile-app")}>mobile-app</li>
-        <li className={menu === "contact-us" ? "active" : ""} onClick={() => setMenu("contact-us")}>contact us</li>
+        <span onClick={scrollToTop}>
+          <Link to="/" className={menu === "home" ? "active" : ""}>home</Link>
+        </span>
+        <a href='#explore-menu' className={menu === "menu" ? "active" : ""} onClick={() => setMenu("menu")}>menu</a>
+        <a href='#app-download' className={menu === "mobile-app" ? "active" : ""} onClick={() => setMenu("mobile-app")}>mobile-app</a>
+        <a href='#footer' className={menu === "contact-us" ? "active" : ""} onClick={() => setMenu("contact-us")}>contact us</a>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
@@ -24,7 +44,7 @@ const Navbar = () => {
         <button>sign in</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
