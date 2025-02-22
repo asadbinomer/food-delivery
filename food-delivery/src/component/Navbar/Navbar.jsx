@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import { assets } from "../../assets/frontend_assets/assets";
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
@@ -26,7 +26,7 @@ const Navbar = ({ setShowLogin }) => {
 
   return (
     <div className={`navbar ${visible ? "visible" : "hidden"}`}>
-      <img src={assets.logo} alt="" className='logo' />
+      <Link to="/"><img src={assets.logo} alt="" className='logo' /></Link>
       <ul className="navbar-menu">
         <span onClick={scrollToTop}>
           <Link to="/" className={menu === "home" ? "active" : ""}>home</Link>
@@ -38,7 +38,7 @@ const Navbar = ({ setShowLogin }) => {
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-search-icon">
-          <img src={assets.basket_icon} alt="" />
+          <Link to="/cart"><img src={assets.basket_icon} alt="" /></Link>
           <div className="dot"></div>
         </div>
         <button onClick={() => setShowLogin(true)}>sign in</button>
