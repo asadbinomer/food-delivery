@@ -114,9 +114,14 @@
    color: white;
    background-color: tomato;
    width: max(15vw, 200px);
-   padding: 12px 0px;
+   padding: 20px 0px;
    border-radius: 4px;
    cursor: pointer;
+   transition: 0.3s;
+  }
+  
+  .cart-total button:hover{
+    background-color: rgb(233, 85, 59);
  }
  
  .cart-promocode {
@@ -140,15 +145,32 @@
    background: transparent;
    border: none;
    outline: none;
-   padding-left: 10px;
+   padding-left: 15px;
+   text-transform: capitalize;
  }
  
  .cart-promocode-input button {
    width: max(10vw, 150px);
-   padding: 12px 5px;
-   background-color: black;
+   padding: 20px 5px;
+   background-color: rgba(0, 0, 0, 0.822);
    border: none;
    color: white;
    border-radius: 4px;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.cart-promocode-input button:hover{
+   background-color: black;
+ }
+
+ @media (max-width: 750px) {
+   .cart-bottom {
+     flex-direction: column-reverse;
+   }
+ 
+   .cart-promocode {
+     justify-content: start;
+   }
  }
  

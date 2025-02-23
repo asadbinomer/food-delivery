@@ -129,3 +129,13 @@
  .visible {
    top: 0;
  }
+
+.loading-icon{
+   width: 25px;
+   height: 25px;
+}
+
+.user-icon{
+   width: 36px;
+   cursor: pointer;
+}
