@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Navbar from './component/Navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
+import Navbar from './component/Navbar/Navbar'
 import Home from "./pages/Home/Home"
 import Cart from "./pages/Cart/Cart"
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder"
@@ -8,23 +8,22 @@ import Footer from './component/Footer/Footer'
 import LoginPopup from './component/LoginPopup/LoginPopup'
 
 const App = () => {
-
-  const [showLogin, setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <>
-      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <Navbar setShowLogin={setShowLogin} />
       <div className="app">
         <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/cart' element={<Cart/>} />
-          <Route path='/order' element={<PlaceOrder/>} />
+          <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/order' element={<PlaceOrder />} />
         </Routes>
       </div>
-      <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
